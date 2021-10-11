@@ -35,12 +35,11 @@ def start
       game.check_winner 
     end
  
+    game.switch_player   
+    puts game.score
 
     if (game.winner == nil)
       puts "----- NEW TURN -----"
-    elsif 
-      game.switch_player   
-      puts game.score
     end
   end
 
