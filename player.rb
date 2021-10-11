@@ -7,6 +7,6 @@ class Player
   end
  
   def decrease_lives  
-    self.lives -= 1
+    @lives -= 1
   end 
 end

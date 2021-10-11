@@ -18,7 +18,7 @@ def start
     question = Game.new_question
     num1, num2, result = question 
 
-    puts "\nPlayer #{game.current_player.number}: Whats does #{num1} plus #{num2} equal? #{result}" 
+    puts "\nPlayer #{game.current_player.number}: What does #{num1} plus #{num2} equal? #{result}" 
     print "> " 
     response = gets.chomp.to_i
 
@@ -28,14 +28,23 @@ def start
 
     if (response != result)
       puts "Player #{game.current_player.number}: Seriously? No!"
+      game.current_player.decrease_lives
+      game.check_winner 
     end
 
-    game.switch_player  
-   
+    game.switch_player   
     puts game.score
-    puts "----- NEW TURN -----"
+
+    if (game.winner == nil)
+      puts "----- NEW TURN -----"
+    end
   end
-   
+
+
+  puts "Player #{game.winner.number} wins with a score of #{game.winner.lives}/3 "
+  puts "----- GAME OVER -----"
+  puts "Good bye!"
+     
 end
 
 start
