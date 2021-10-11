@@ -6,19 +6,34 @@ require './player'
   
 def start
 
-  p1 = Player.new
-  p2 = Player.new 
+  p1 = Player.new(1)
+  p2 = Player.new(2)
  
   game = Game.new(p1, p2)
+  
+  # Starts game until there is a winner
+  while game.winner == nil
  
-  while true
+
     question = Game.new_question
-    puts question[0]
-    puts question[1]
-    puts question[2]
-    puts "Player 1: Whats does #{question[0]} plus #{question[1]} equal?"
-    res = gets.chomp 
+    num1, num2, result = question 
+
+    puts "\nPlayer #{game.current_player.number}: Whats does #{num1} plus #{num2} equal? #{result}" 
+    print "> " 
+    response = gets.chomp.to_i
+
+    if(response == result)
+      puts "Player #{game.current_player.number}: Way to go!"
+    end
+
+    if (response != result)
+      puts "Player #{game.current_player.number}: Seriously? No!"
+    end
+
+    game.switch_player  
    
+    puts game.score
+    puts "----- NEW TURN -----"
   end
    
 end

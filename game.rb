@@ -1,11 +1,20 @@
 class Game
+  
+  attr_reader :winner, :current_player
+
   def initialize(p1, p2)
     @p1 = p1
-    @p2 = p2
+    @p2 = p2 
     @current_player = p1
+    @winner = nil
   end
 
-  def current_player
+  def switch_player 
+    @current_player = @current_player == @p1 ? @p2 : @p1
+  end
+
+  def score
+    "P1: #{@p1.lives}/3 vs P2: #{@p2.lives}/3"
   end
 
   def self.new_question 
